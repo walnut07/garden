@@ -1,20 +1,33 @@
 package com.mtkrm.project
 
-import io.kvision.Application
-import io.kvision.CoreModule
-import io.kvision.BootstrapModule
-import io.kvision.BootstrapCssModule
-import io.kvision.html.div
-import io.kvision.module
+import com.mtkrm.project.components.NavBar
+import com.mtkrm.project.pages.HomePage
+import com.mtkrm.project.pages.NotFoundPage
+import com.mtkrm.project.pages.TagsPage
+import com.mtkrm.project.routing.RouterManager
+import io.kvision.*
 import io.kvision.panel.root
-import io.kvision.startApplication
+import io.kvision.Application
+import io.kvision.panel.SimplePanel
 
 class App : Application() {
     override fun start() {
-        root("kvapp") {
-            div("Hello world")
-            // TODO
+        val rootContainer = root("kvapp") {
+            SimplePanel()
+            NavBar()
         }
+
+        // Initialize the global router
+        RouterManager.initializeRouter(rootContainer)
+
+        // Define routes
+        RouterManager.router.addRoute("/") { HomePage() }
+        RouterManager.router.addRoute("/home") { HomePage() }
+        RouterManager.router.addRoute("/tags") { TagsPage() }
+        RouterManager.router.addRoute("/404") { NotFoundPage() }
+
+        // Start the router
+        RouterManager.router.start()
     }
 }
 

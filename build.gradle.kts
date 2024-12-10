@@ -36,9 +36,19 @@ kotlin {
     sourceSets["jsMain"].dependencies {
         implementation("io.kvision:kvision:$kvisionVersion")
         implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     }
     sourceSets["jsTest"].dependencies {
         implementation(kotlin("test-js"))
         implementation("io.kvision:kvision-testutils:$kvisionVersion")
     }
+}
+
+tasks {
+    val copyResources by registering(Copy::class) {
+        from("src/jsMain/kotlin/exportedNotes")
+        into("$buildDir/processedResources/js/main/exportedNotes")
+    }
+
+    getByName("jsProcessResources").dependsOn(copyResources)
 }

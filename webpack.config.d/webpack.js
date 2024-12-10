@@ -12,9 +12,10 @@ if (config.devServer) {
     config.devtool = undefined;
 }
 
-// disable bundle size warning
+// Disable bundle size warning
 config.performance = {
     assetFilter: function (assetFilename) {
       return !assetFilename.endsWith('.js');
     },
 };
+
