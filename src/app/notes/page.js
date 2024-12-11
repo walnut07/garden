@@ -1,12 +1,10 @@
-import { getAllNotes } from '../../utils/serverNotes';
+import { Suspense } from 'react';
 import NotesComponent from './NotesComponent';
 
-export const metadata = {
-  title: 'Notes',
-  description: 'Browse notes by date or tag.',
-};
-
-export default function NotesPage() {
-  const notes = getAllNotes();
-  return <NotesComponent notes={notes} />;
+export default function NotesPage({ notes }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NotesComponent notes={notes} />
+    </Suspense>
+  );
 }
