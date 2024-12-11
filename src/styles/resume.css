@@ -1,0 +1,13 @@
+.resume-container h1, .resume-container h2 {
+    color: #8b4513;
+    font-family: Georgia, serif;
+}
+
+.resume-container ul {
+    padding-left: 1.5rem;
+}
+
+.resume-container li {
+    margin-bottom: 0.5rem;
+}
+  

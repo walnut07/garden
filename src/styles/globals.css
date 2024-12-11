@@ -1,0 +1,209 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #4f4a45;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+h1, h2 {
+  font-family: 'Georgia', serif;
+  color: #4f4a45;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #fff8dc; /* Wheat color */
+  padding: 1rem 2rem;
+  width: 100vm;
+}
+
+.navbar-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin: 0 1rem;
+}
+
+.navbar-link {
+  color: #8b4513;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #feb897;
+}
+
+/* Intro Section */
+.intro-section {
+  line-height: 1.3;
+  margin: 2rem auto;
+  max-width: 800px;
+  padding: 1rem;
+  border-left: 4px solid #ddd;
+}
+
+.intro-section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #4f4a45; /* Softer dark text color */
+  font-family: 'Georgia', serif;
+}
+
+.intro-section p {
+  margin: 0.5rem 0;
+  color: #5a524d;
+  line-height: 1.8rem;
+}
+
+.intro-link {
+  color: #8b4513;
+  text-decoration: underline;
+}
+
+.intro-link:hover {
+  color: #a0522d;
+}
+
+/* Recent Notes Link */
+.recent-notes-link {
+  color: #8b4513;
+  text-decoration: underline;
+  font-size: 1rem; /* Slightly larger link size */
+}
+
+.recent-notes-link:hover {
+  color: #a0522d;
+}
+
+/* Recent Notes Section */
+.recent-notes {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+.recent-notes-list {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-note-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recent-note-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.recent-note-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.recent-note-link h3 {
+  margin: 0 0 0.5rem 0;
+  color: #4f4a45;
+  font-size: 1.2rem; /* Increase note title size */
+}
+
+.recent-note-link p {
+  margin: 0;
+  color: #5a524d; /* Softer paragraph text color */
+  font-size: 1rem;
+}
+
+/* Styles for Tags Section */
+.tags-section {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.tag-item {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff8dc; /* Light wheat */
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tag-item:hover {
+  background-color: #feedcf; /* Lighter wheat on hover */
+}
+
+.tag-link {
+  text-decoration: none;
+  color: #4f4a45;
+  font-size: 0.95rem; /* Slightly larger tags */
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  background-color: var(--accent-color);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+
+/* Footer */
+.footer {
+  background-color: #fff8dc; /* Wheat color */
+  color: #4f4a45; /* Softer dark text color */
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
