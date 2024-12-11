@@ -6,7 +6,7 @@ import '@/styles/resume.css';
 import 'highlight.js/styles/default.css';
 
 export default function ResumePage() {
-  const filePath = path.join(process.cwd(), 'src', 'data', 'resume.md');
+  const filePath = path.join(process.cwd(), 'public', 'resume.md');
   const content = fs.readFileSync(filePath, 'utf8');
 
   const md = new MarkdownIt();

@@ -5,11 +5,11 @@ import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/default.css';
 
-const notesDirectory = path.join(process.cwd(), 'src/data/notes/logseq-pages');
+const notesDirectory = path.join(process.cwd(), 'public', 'notes/logseq-pages');
 
 export function getAllNotes() {
   const filenames = fs.readdirSync(notesDirectory);
-
+  
   return filenames.map((filename) => {
     const filePath = path.join(notesDirectory, filename);
     const fileContents = fs.readFileSync(filePath, 'utf8');

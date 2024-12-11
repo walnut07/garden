@@ -35,8 +35,8 @@ export default function NotesComponent({ notes }) {
     const tags = Array.from(
       new Set(
         notes
-          .flatMap((note) => note.tags || [])
-          .filter((tag) => tag && tag.length > 0) // Eliminate empty strings
+          ?.flatMap((note) => note?.tags || [])
+          ?.filter((tag) => tag && tag?.length > 0) // Eliminate empty strings
       )
     );
     setUniqueTags(tags);
@@ -44,7 +44,7 @@ export default function NotesComponent({ notes }) {
   
   const getFilteredNotes = () => {
     return notes
-      .map((note) => {
+      ?.map((note) => {
         if (note.date) {
           const parsedDate = chrono.parseDate(note.date);
           note.date = parsedDate ? parsedDate.toISOString().split('T')[0] : null;
@@ -64,13 +64,13 @@ export default function NotesComponent({ notes }) {
   };  
 
   const [filteredNotes, setFilteredNotes] = useState(getFilteredNotes);
-  const [visibleNotes, setVisibleNotes] = useState(filteredNotes.slice(0, 5));
+  const [visibleNotes, setVisibleNotes] = useState(filteredNotes?.slice(0, 5));
   const [loadedCount, setLoadedCount] = useState(5);
 
   useEffect(() => {
     const filtered = getFilteredNotes();
     setFilteredNotes(filtered);
-    setVisibleNotes(filtered.slice(0, 5));
+    setVisibleNotes(filtered?.slice(0, 5));
     setLoadedCount(5);
   }, [dateFilter, tagFilter]);
 
@@ -127,7 +127,7 @@ export default function NotesComponent({ notes }) {
         <aside className="notes-sidebar">
           <h3>Date Index</h3>
           <ul>
-            {dateIndex.map((date) => (
+            {dateIndex?.map((date) => (
               <li key={date}>
                 <Link href={`?date=${date}`}>{date}</Link>
               </li>
@@ -135,7 +135,7 @@ export default function NotesComponent({ notes }) {
           </ul>
           <h3>Tags</h3>
           <ul>
-            {uniqueTags.map((tag) => (
+            {uniqueTags?.map((tag) => (
               <li key={tag}>
                 <Link href={`?tag=${tag}`}>#{tag}</Link>
               </li>
@@ -144,9 +144,9 @@ export default function NotesComponent({ notes }) {
         </aside>
         <main className="notes-list-area">
           <h1>{message}</h1>
-          {visibleNotes.length > 0 ? (
+          {visibleNotes?.length > 0 ? (
             <ul className="notes-list">
-              {visibleNotes.map((note) => (
+              {visibleNotes?.map((note) => (
                 <li className="note-item" key={note.slug}>
                   <Link href={`/notes/${note.slug}`} style={{textDecoration: "none"}}>
                     <div>

@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import markdownIt from 'markdown-it';
 
-const postsDirectory = path.join(process.cwd(), 'src/data/posts');
+const postsDirectory = path.join(process.cwd(), 'public', 'posts');
 
 export function getAllPosts() {
   const filenames = fs.readdirSync(postsDirectory);
