@@ -28,7 +28,7 @@ export default async function Home() {
         </div>
         <p>A cozy place to grow and share ideas🌱<br/>
           This is 80% reflection of what mtkrm wonders and thinks about from trivial thoughts to life-changing moments. 
-          It's a &apos;garden&apos; as I (at least) try to take care of them on a regular basis.
+          It&apos;'s a &apos;garden&apos; as I (at least) try to take care of them on a regular basis.
           You might know me from:</p>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
           <img
