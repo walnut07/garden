@@ -1,18 +1,20 @@
-/* Notes Page Styles */
-
 /* Container */
 .notes-container {
-  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
   padding: 1rem;
-  max-width: 960px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Sidebar */
 .notes-sidebar {
-  width: 20%;
+  flex: 0 0 20%;
   padding: 1rem;
   background: #f4f4f4;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .notes-sidebar h3 {
@@ -24,6 +26,7 @@
 .notes-sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .notes-sidebar li {
@@ -40,19 +43,25 @@
   color: #a0522d;
 }
 
+/* Main Area */
+.notes-list-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Helps prevent overflow on small screens */
+  box-sizing: border-box;
+}
+
+.notes-list-area h1 {
+  margin-top: 0;
+}
+
 /* Notes List */
 .notes-list {
   padding: 0;
-  margin-left: 1rem;
-}
-
-li.notes-list {
-    margin: 0;
-}
-
-a.note-item {
-  text-decoration: none; /* Remove underline */
-  cursor: pointer;
+  margin: 1rem 0;
+  list-style: none;
+  box-sizing: border-box;
 }
 
 .note-item {
@@ -60,9 +69,8 @@ a.note-item {
   padding: 1rem;
   border: 1px solid #e5d1a1;
   border-radius: 8px;
-  max-width: 700px;
-  margin-right: auto;
-  list-style: none;
+  background: #fff;
+  box-sizing: border-box;
 }
 
 .note-title {
@@ -98,15 +106,38 @@ a.note-item {
   color: #333;
 }
 
+.note-content pre {
+  overflow-x: auto;
+  white-space: pre;
+  background: #f7f7f7;
+  padding: 1rem;
+  border-radius: 5px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.note-content code {
+  display: inline-block;
+  vertical-align: baseline;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .notes-container {
+    flex-direction: column;
     padding: 0.5rem;
   }
 
   .notes-sidebar {
     width: 100%;
     margin-bottom: 1.5rem;
+  }
+
+  .notes-list-area {
+    margin: 0;
   }
 
   .note-item {

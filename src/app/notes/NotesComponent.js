@@ -7,6 +7,8 @@ import { useSearchParams } from 'next/navigation';
 import MarkdownIt from 'markdown-it';
 import * as chrono from 'chrono-node';
 import '@/styles/notes.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/default.css';
 
 export default function NotesComponent({ notes }) {
   const searchParams = useSearchParams();
@@ -14,7 +16,16 @@ export default function NotesComponent({ notes }) {
   const dateFilter = searchParams.get('date');
   const tagFilter = searchParams.get('tag');
 
-  const md = new MarkdownIt();
+  const md = new MarkdownIt({
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return `<pre class="hljs"><code>${hljs.highlight(str, { language: lang }).value}</code></pre>`;
+        } catch (__) {}
+      }
+      return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
+    }
+  });
 
   // State to hold unique tags, initialized once
   const [uniqueTags, setUniqueTags] = useState([]);
@@ -25,13 +36,12 @@ export default function NotesComponent({ notes }) {
       new Set(
         notes
           .flatMap((note) => note.tags || [])
-          .filter((tag) => tag && tag.length > 0) // Eliminate empty strings or arrays
+          .filter((tag) => tag && tag.length > 0) // Eliminate empty strings
       )
     );
     setUniqueTags(tags);
   }, [notes]);
   
-
   const getFilteredNotes = () => {
     return notes
       .map((note) => {
@@ -91,12 +101,12 @@ export default function NotesComponent({ notes }) {
 
     while (startDate <= currentDate) {
       const year = startDate.getFullYear();
-      const month = String(startDate.getMonth() + 1).padStart(2, '0'); // Convert to "MM"
+      const month = String(startDate.getMonth() + 1).padStart(2, '0'); 
       dateLinks.push(`${year}-${month}`);
-      startDate.setMonth(startDate.getMonth() + 1); // Move to the next month
+      startDate.setMonth(startDate.getMonth() + 1);
     }
 
-    return dateLinks.reverse(); // Show latest dates first
+    return dateLinks.reverse();
   };
 
   const dateIndex = generateDateIndex();
@@ -113,7 +123,7 @@ export default function NotesComponent({ notes }) {
   return (
     <div>
       <Navbar />
-      <div style={{ display: 'flex' }} className="notes-container">
+      <div className="notes-container">
         <aside className="notes-sidebar">
           <h3>Date Index</h3>
           <ul>
@@ -125,7 +135,6 @@ export default function NotesComponent({ notes }) {
           </ul>
           <h3>Tags</h3>
           <ul>
-            {console.log("tags: ", uniqueTags)}
             {uniqueTags.map((tag) => (
               <li key={tag}>
                 <Link href={`?tag=${tag}`}>#{tag}</Link>
@@ -133,32 +142,37 @@ export default function NotesComponent({ notes }) {
             ))}
           </ul>
         </aside>
-        <main style={{ flex: 1 }} className="notes-list">
+        <main className="notes-list-area">
           <h1>{message}</h1>
           {visibleNotes.length > 0 ? (
             <ul className="notes-list">
-          {visibleNotes.map((note) => (
-            <li className="note-item" key={note.slug}>
-              <Link href={`/notes/${note.slug}`} style={{textDecoration: "none"}}>
-                <div>
-                  <h2 className="note-title">{note.title}</h2>
-                  <p className="note-date">Created on: {note.date || 'Unknown'}</p>
-                  <div className="note-tags">
-                    {note.tags?.map((tag) => (
-                      <span className="note-tag" key={tag}>
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div
-                    className="note-content"
-                    dangerouslySetInnerHTML={{ __html: md.render(note.content) }}
-                  />
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+              {visibleNotes.map((note) => (
+                <li className="note-item" key={note.slug}>
+                  <Link href={`/notes/${note.slug}`} style={{textDecoration: "none"}}>
+                    <div>
+                      <h2 className="note-title">{note.title}</h2>
+                      <p className="note-date">Created on: {note.date || 'Unknown'}</p>
+                      <div className="note-tags">
+                        {Array.isArray(note.tags) && note?.tags?.map((tag) => (
+                          <span className="note-tag" key={tag}>
+                            #{tag}
+                          </span>
+                        ))}
+                        {!Array.isArray(note.tags) && 
+                          <span className="note-tag" key={note.tags}>
+                            #{note.tags}
+                          </span>
+                        }
+                      </div>
+                      <div
+                        className="note-content"
+                        dangerouslySetInnerHTML={{ __html: md.render(note.content) }}
+                      />
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           ) : (
             <p>Oops, no notes found for the selected filters!</p>
           )}

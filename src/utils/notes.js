@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import markdownIt from 'markdown-it';
+import MarkdownIt from 'markdown-it';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/default.css';
 
 const notesDirectory = path.join(process.cwd(), 'src/data/notes/logseq-pages');
 
@@ -23,7 +25,16 @@ export function getAllNotes() {
 }
 
 
-const md = new markdownIt();
+const md = new MarkdownIt({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return `<pre class="hljs"><code>${hljs.highlight(str, { language: lang }).value}</code></pre>`;
+      } catch (__) {}
+    }
+    return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
+  }
+});
 
 export function getAllNoteSlugs() {
   const filenames = fs.readdirSync(notesDirectory);

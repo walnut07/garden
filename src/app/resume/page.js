@@ -3,6 +3,7 @@ import MarkdownIt from 'markdown-it';
 import fs from 'fs';
 import path from 'path';
 import '@/styles/resume.css';
+import 'highlight.js/styles/default.css';
 
 export default function ResumePage() {
   const filePath = path.join(process.cwd(), 'src', 'data', 'resume.md');
