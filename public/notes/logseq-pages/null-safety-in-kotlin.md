@@ -1,8 +1,8 @@
 ---
-created: "[[Dec 10th, 2024]]"
+created: "[[Nov 20th, 2024]]"
 public: "true"
 slug: "null-safety-in-kotlin"
-tags: Kotlin
+tags: [Kotlin]
 title: "Null Safety in Kotlin"
 ---
 
