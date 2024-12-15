@@ -55,15 +55,14 @@ export default async function Home() {
         <section className="intro-section">
           <h2>whoami</h2>
           <p>
-            I go by Kurumi Muto/武藤胡桃 in the real world, while I&apos;m also known as mtkrm and walnut07 in the cyber space.
-            My personal enthusiasm lies in Web, microservices, privacy, and feminism (I know it&apos;s scattered!). 
-            I also find myself enjoying finger-drumming with hip-hop music, although I haven&apos;t performed publicly or created content yet.
-            One of my routines is to take notes of whatever I learn or search, and the page {
-            <Link href="/notes" className="intro-link">
-              notes
-            </Link>
-            } gives you a glimpse of what my brain consumes.
-            For my brief history, check out my{' '} <Link href="/resume" className="intro-link"> resume </Link>
+            I am Kurumi Muto/武藤胡桃, also known as mtkrm or walnut07 in cyberspace.
+            Curently, I'm attending Tsuda University, though that may not mean much to everyone.
+            My enthusiasm lies in backend technologies, particularly in large-scale, fault-tolerant systems.
+            However, I am equally passionate about feminism and human rights issues.
+            In fact, my previous major before switching to data science was Sociology.
+            From Tech to Sociology―Yes my curiosity is broad. I believe the overlap between your areas of interest truly shapes who you are.
+            I also enjoy finger-drumming with hip-hop music, although I haven&apos;t performed publicly or created content yet.
+            For a brief history of my background, check out my{' '} <Link href="/resume" className="intro-link"> resume </Link>
           </p>
         </section>
 
@@ -71,7 +70,7 @@ export default async function Home() {
         <section className="recent-notes">
           <h2>Recent Notes</h2>
           <p>
-            A reflection of my Logseq notes.
+            I journal at least once a day.
           </p>
           <ul className="recent-notes-list">
             {recentNotes.map(note => (
